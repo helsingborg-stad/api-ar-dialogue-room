@@ -6,33 +6,35 @@ class App
 {
     public function __construct()
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'));
-        add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
+        add_action('init', array($this, 'registerPostType'), 9);
     }
 
-    /**
-     * Enqueue required style
-     * @return void
-     */
-    public function enqueueStyles()
+    public function registerPostType()
     {
-        wp_register_style(
-            'api-ar-dialogue-room-css',
-            API_AR_DIALOGUE_ROOM_URL . '/dist/' .
-            \ApiArDialogueRoom\Helper\CacheBust::name('css/api-ar-dialogue-room.css')
+        $args = array(
+            'menu_icon'          => 'dashicons-portfolio',
+            'public'             => true,
+            'publicly_queryable' => false,
+            'show_ui'            => true,
+            'show_in_menu'       => true,
+            'query_var'          => true,
+            'capability_type'    => 'post',
+            'has_archive'        => false,
+            'hierarchical'       => false,
+            'supports'           => array('title', 'author', 'revisions', 'thumbnail'),
         );
-    }
 
-    /**
-     * Enqueue required scripts
-     * @return void
-     */
-    public function enqueueScripts()
-    {
-        wp_register_script(
-            'api-ar-dialogue-room-js',
-            API_AR_DIALOGUE_ROOM_URL . '/dist/' .
-            \ApiArDialogueRoom\Helper\CacheBust::name('js/api-ar-dialogue-room.js')
+        $restArgs = array(
+            'exclude_keys' => array()
+        );
+
+        $postType = new \ApiArDialogueRoom\Helper\PostType(
+            'ar-dialogue-room',
+            __('Room Dialogue', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
+            __('Room Dialogues', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
+            $args,
+            array(),
+            $restArgs
         );
     }
 }
