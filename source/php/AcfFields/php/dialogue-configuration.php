@@ -61,7 +61,7 @@
                 'id' => '',
             ),
             'collapsed' => '',
-            'min' => 1,
+            'min' => 0,
             'max' => 0,
             'layout' => 'table',
             'button_label' => '',
