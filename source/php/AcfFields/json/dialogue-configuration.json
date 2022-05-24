@@ -234,7 +234,7 @@
         ]
     ],
     "menu_order": 0,
-    "position": "normal",
+    "position": "acf_after_title",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
@@ -250,6 +250,7 @@
         "send-trackbacks"
     ],
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 1
 }]
 

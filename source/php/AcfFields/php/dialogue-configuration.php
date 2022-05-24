@@ -237,7 +237,7 @@
         ),
     ),
     'menu_order' => 0,
-    'position' => 'normal',
+    'position' => 'acf_after_title',
     'style' => 'default',
     'label_placement' => 'top',
     'instruction_placement' => 'label',
@@ -254,5 +254,6 @@
     ),
     'active' => true,
     'description' => '',
+    'show_in_rest' => 1,
 ));
 }
