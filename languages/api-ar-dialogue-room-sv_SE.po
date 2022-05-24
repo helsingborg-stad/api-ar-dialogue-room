@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: API AR Dialogue Room\n"
-"POT-Creation-Date: 2022-05-24 13:40+0200\n"
-"PO-Revision-Date: 2022-05-24 13:42+0200\n"
+"POT-Creation-Date: 2022-05-24 13:45+0200\n"
+"PO-Revision-Date: 2022-05-24 13:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -19,6 +19,54 @@ msgstr ""
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:6
+msgid "Dialogue Configuration"
+msgstr "Dialoginställningar"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:10
+msgid "Plane Dimensions Width (m)"
+msgstr "Ytans dimensioner - bredd (m)"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:32
+msgid "Plane Dimensions Height (m)"
+msgstr "Ytans dimensioner - höjd (m)"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:54
+msgid "Resources"
+msgstr "Resurser"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:74
+msgid "Name"
+msgstr "Namn"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:94
+msgid "Model"
+msgstr "Modell"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:114
+msgid "Marker Model"
+msgstr "Markörmodell"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:136
+msgid "Scenes"
+msgstr "Scener"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:156
+msgid "Scene Name"
+msgstr "Scennamn"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:176
+msgid "JSON"
+msgstr "JSON"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:196
+msgid "Scene ID"
+msgstr "Scen-ID"
+
+#: source/php/AcfFields/php/dialogue-configuration.php:216
+msgid "Featured Scene"
+msgstr "Utvald scen"
 
 #: source/php/App.php:33
 msgid "Room Dialogue"
