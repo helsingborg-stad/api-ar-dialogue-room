@@ -1,6 +1,6 @@
 <?php
 
-namespace {{BPREPLACENAMESPACE}};
+namespace ApiArDialogueRoom;
 
 class App
 {
@@ -17,9 +17,9 @@ class App
     public function enqueueStyles()
     {
         wp_register_style(
-            '{{BPREPLACESLUG}}-css',
-            {{BPREPLACECAPSCONSTANT}}_URL . '/dist/' .
-            \{{BPREPLACENAMESPACE}}\Helper\CacheBust::name('css/{{BPREPLACESLUG}}.css')
+            'api-ar-dialogue-room-css',
+            API_AR_DIALOGUE_ROOM_URL . '/dist/' .
+            \ApiArDialogueRoom\Helper\CacheBust::name('css/api-ar-dialogue-room.css')
         );
     }
 
@@ -30,9 +30,9 @@ class App
     public function enqueueScripts()
     {
         wp_register_script(
-            '{{BPREPLACESLUG}}-js',
-            {{BPREPLACECAPSCONSTANT}}_URL . '/dist/' .
-            \{{BPREPLACENAMESPACE}}\Helper\CacheBust::name('js/{{BPREPLACESLUG}}.js')
+            'api-ar-dialogue-room-js',
+            API_AR_DIALOGUE_ROOM_URL . '/dist/' .
+            \ApiArDialogueRoom\Helper\CacheBust::name('js/api-ar-dialogue-room.js')
         );
     }
 }

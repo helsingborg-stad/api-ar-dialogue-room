@@ -1,18 +1,18 @@
 {
-  "name": "{{BPREPLACESLUG}}",
+  "name": "api-ar-dialogue-room",
   "version": "1.0.0",
-  "description": "{{BPREPLACEDESCRIPTION}}",
+  "description": "Backend for AR Room Dialogues.",
   "main": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/{{BPREPLACEGITHUB}}/{{BPREPLACESLUG}}"
+    "url": "https://github.com/helsingborg-stad/api-ar-dialogue-room"
   },
-  "author": "{{BPREPLACEAUTHOR}}",
+  "author": "Nikolas Ramstedt",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/{{BPREPLACEGITHUB}}/{{BPREPLACESLUG}}/issues"
+    "url": "https://github.com/helsingborg-stad/api-ar-dialogue-room/issues"
   },
-  "homepage": "https://github.com/{{BPREPLACEGITHUB}}/{{BPREPLACESLUG}}",
+  "homepage": "https://github.com/helsingborg-stad/api-ar-dialogue-room",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "cross-env NODE_ENV=development webpack --watch",

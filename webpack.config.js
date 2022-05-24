@@ -16,8 +16,8 @@ module.exports = {
      * Entry files - Add more entries if needed.
      */
     entry: {
-        'js/{{BPREPLACESLUG}}': './source/js/{{BPREPLACESLUG}}.js',
-        'css/{{BPREPLACESLUG}}': './source/sass/{{BPREPLACESLUG}}.scss',
+        'js/api-ar-dialogue-room': './source/js/api-ar-dialogue-room.js',
+        'css/api-ar-dialogue-room': './source/sass/api-ar-dialogue-room.scss',
     },
     
     /**
