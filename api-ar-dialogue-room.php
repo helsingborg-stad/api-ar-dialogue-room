@@ -45,5 +45,29 @@ add_action('acf/init', function () {
     $acfExportManager->import();
 });
 
+add_action('admin_notices', function () {
+    $dependencies = [
+        'acf' => [
+            'name' => 'Advanced Custom Fields PRO',
+            'enabled' => class_exists('ACF'),
+            'download' => 'https://www.advancedcustomfields.com/'
+        ]
+    ];
+
+    $missingDependecies = array_filter($dependencies, function ($d) {
+        return !$d['enabled'];
+    });
+
+    if (count($missingDependecies) > 0) {
+        $class = 'notice notice-error';
+        $message = __('API Kiosk Model Viewer: Please install & activate required plugins:', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN);
+        $listItems = implode('', array_map(function ($item) {
+            return sprintf('<li><a href="%2$s" target="_blank">%1$s</a></li>', esc_html($item['name']), esc_html($item['download']));
+        }, $missingDependecies));
+
+        printf('<div class="%1$s"><h4>%2$s</h4><ul>%3$s</ul></div>', esc_attr($class), esc_html($message), $listItems);
+    }
+});
+
 // Start application
 new ApiArDialogueRoom\App();
