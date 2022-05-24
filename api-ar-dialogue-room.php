@@ -40,7 +40,7 @@ add_action('acf/init', function () {
     $acfExportManager->setTextdomain('api-ar-dialogue-room');
     $acfExportManager->setExportFolder(API_AR_DIALOGUE_ROOM_PATH . 'source/php/AcfFields/');
     $acfExportManager->autoExport(array(
-        'api-ar-dialogue-room-settings' => 'group_61ea7a87e8aaa' //Update with acf id here, settings view
+        'dialogue-configuration' => 'group_6285175045f1e' //Update with acf id here, settings view
     ));
     $acfExportManager->import();
 });
