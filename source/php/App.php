@@ -37,7 +37,9 @@ class App
 
     public function renderMetaBoxContent()
     {
-        $restUrl = get_field('custom_rest_url', 'option') ?? get_rest_url(null, 'wp/v2/ar-dialogue-room');
+        $restUrl = get_field('custom_rest_url', 'option')
+            ? get_field('custom_rest_url', 'option')
+            : get_rest_url(null, 'wp/v2/ar-dialogue-room');
 
         printf(
             '<a href="%2$s">%1$s</a>',
@@ -93,6 +95,7 @@ class App
             'has_archive'        => false,
             'hierarchical'       => false,
             'supports'           => array('title', 'author', 'revisions', 'thumbnail'),
+            'show_in_rest'       => true,
         );
 
         $restArgs = array(
