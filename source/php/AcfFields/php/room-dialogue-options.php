@@ -26,7 +26,7 @@
         ),
         1 => array(
             'key' => 'field_628cd36ebe712',
-            'label' => __('Custom REST URL', 'api-ar-dialogue-room'),
+            'label' => __('Custom REST URL (OPTIONAL)', 'api-ar-dialogue-room'),
             'name' => 'custom_rest_url',
             'type' => 'url',
             'instructions' => '',
@@ -58,5 +58,6 @@
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
+    'show_in_rest' => 0,
 ));
 }

@@ -23,7 +23,7 @@
         },
         {
             "key": "field_628cd36ebe712",
-            "label": "Custom REST URL",
+            "label": "Custom REST URL (OPTIONAL)",
             "name": "custom_rest_url",
             "type": "url",
             "instructions": "",
@@ -54,6 +54,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 0
 }]
 

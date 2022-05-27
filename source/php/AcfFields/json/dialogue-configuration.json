@@ -124,6 +124,87 @@
             ]
         },
         {
+            "key": "field_62909797ede1c",
+            "label": "Marker",
+            "name": "marker",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_6290979fede1d",
+                    "label": "Marker Image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_629097f5ede1f",
+                    "label": "Marker Physical Height (meters)",
+                    "name": "height",
+                    "type": "range",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "0.05",
+                    "min": "0.01",
+                    "max": 1,
+                    "step": "0.01",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6290983bede20",
+                    "label": "Marker Physical Width (meters)",
+                    "name": "width",
+                    "type": "range",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "0.05",
+                    "min": "0.01",
+                    "max": 1,
+                    "step": "0.01",
+                    "prepend": "",
+                    "append": ""
+                }
+            ]
+        },
+        {
             "key": "field_62866a4d045c5",
             "label": "Scenes",
             "name": "scenes",
