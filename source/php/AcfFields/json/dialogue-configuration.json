@@ -331,6 +331,7 @@
         "send-trackbacks"
     ],
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 1
 }]
 

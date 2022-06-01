@@ -335,5 +335,6 @@
     ),
     'active' => true,
     'description' => '',
+    'show_in_rest' => 1,
 ));
 }
