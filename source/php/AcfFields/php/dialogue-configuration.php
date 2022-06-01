@@ -11,7 +11,7 @@
             'name' => 'plane_dimensions_width',
             'type' => 'number',
             'instructions' => '',
-            'required' => 1,
+            'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '50',
@@ -32,7 +32,7 @@
             'name' => 'plane_dimensions_height',
             'type' => 'number',
             'instructions' => '',
-            'required' => 1,
+            'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '50',
@@ -147,7 +147,7 @@
                     'name' => 'image',
                     'type' => 'image',
                     'instructions' => '',
-                    'required' => 1,
+                    'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
                         'width' => '',
@@ -171,14 +171,14 @@
                     'name' => 'height',
                     'type' => 'range',
                     'instructions' => '',
-                    'required' => 1,
+                    'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
                         'width' => '',
                         'class' => '',
                         'id' => '',
                     ),
-                    'default_value' => __('0.05', 'api-ar-dialogue-room'),
+                    'default_value' => '0.05',
                     'min' => '0.01',
                     'max' => 1,
                     'step' => '0.01',
@@ -191,14 +191,14 @@
                     'name' => 'width',
                     'type' => 'range',
                     'instructions' => '',
-                    'required' => 1,
+                    'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
                         'width' => '',
                         'class' => '',
                         'id' => '',
                     ),
-                    'default_value' => __('0.05', 'api-ar-dialogue-room'),
+                    'default_value' => '0.05',
                     'min' => '0.01',
                     'max' => 1,
                     'step' => '0.01',
@@ -335,6 +335,5 @@
     ),
     'active' => true,
     'description' => '',
-    'show_in_rest' => 1,
 ));
 }
