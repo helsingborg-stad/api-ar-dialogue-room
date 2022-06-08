@@ -11,7 +11,7 @@
             'name' => 'plane_dimensions_width',
             'type' => 'number',
             'instructions' => '',
-            'required' => 1,
+            'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '50',
@@ -32,7 +32,7 @@
             'name' => 'plane_dimensions_height',
             'type' => 'number',
             'instructions' => '',
-            'required' => 1,
+            'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '50',
