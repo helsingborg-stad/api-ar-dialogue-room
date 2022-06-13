@@ -33,11 +33,12 @@ class App
         }
     }
 
-
     public function renderQR($postId, $size = 300)
     {
         printf(
-            '<a href="%2$s" class="%3$s"alt="%1$s"><img style="%4$s" src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=%2$s"></a>',
+            '<a href="%2$s" class="%3$s"alt="%1$s">
+                <img style="%4$s" src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=%2$s">
+            </a>',
             $this->createDeepLinks($postId)['visit']['label'],
             $this->createDeepLinks($postId)['visit']['url'],
             '',
@@ -45,15 +46,32 @@ class App
         );
     }
 
+    public function renderDeeplinks($postId)
+    {
+        echo '<ul>';
+        foreach ($this->createDeepLinks($postId) as $deeplink) {
+            printf(
+                '<li>
+                    <a href="%2$s" class="%3$s" style="%4$s">
+                        %1$s
+                    </a>
+                </li>',
+                $deeplink['label'],
+                $deeplink['url'],
+                'button button-large',
+                'text-align: center;'
+            );
+        }
+        echo '</ul>';
+    }
+
     public function addMetaBoxForDialogueLinks($postType)
     {
-        if (empty($_GET['post']) || $_GET['post'] == '0') {
-            return;
-        }
-
-        $postTypes = ['ar-dialogue-room'];
-
-        if (in_array($postType, $postTypes)) {
+        if (
+            !empty($_GET['post'])
+            && $_GET['post'] !== '0'
+            && in_array($postType, ['ar-dialogue-room'])
+        ) {
             add_meta_box(
                 'ar-dialogue-qr',
                 __('Visit QR', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
@@ -71,11 +89,6 @@ class App
         }
     }
 
-    public function buildDeeplink($verb, $payload)
-    {
-        return sprintf('pladdra://%1$s/%2$s', $verb, base64_encode(json_encode($payload, JSON_UNESCAPED_SLASHES)));
-    }
-
     public function renderQrMetaBox()
     {
         $this->renderQR($_GET['post']);
@@ -86,22 +99,10 @@ class App
         $this->renderDeeplinks($_GET['post']);
     }
 
-
-    public function renderDeeplinks($postId)
+    public function buildDeeplink($verb, $payload)
     {
-        echo '<ul>';
-        foreach ($this->createDeepLinks($postId) as $deeplink) {
-            printf(
-                '<li><a href="%2$s" class="%3$s" style="%4$s">%1$s</a></li>',
-                $deeplink['label'],
-                $deeplink['url'],
-                'button button-large',
-                'text-align: center;'
-            );
-        }
-        echo '</ul>';
+        return sprintf('pladdra://%1$s/%2$s', $verb, base64_encode(json_encode($payload, JSON_UNESCAPED_SLASHES)));
     }
-
 
     public function createDeepLinks($postId)
     {
