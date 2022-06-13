@@ -9,6 +9,40 @@ class App
         add_action('init', array($this, 'registerPostType'), 9);
         add_action('init', array($this, 'registerOptionsPageForDashboard'), 9);
         add_action('add_meta_boxes', array($this, 'addMetaBoxForDialogueLinks'), 9);
+        add_filter('manage_edit-' . 'ar-dialogue-room' . '_columns', array($this, 'addDeeplinksColumn'));
+        add_action('manage_' . 'ar-dialogue-room' . '_posts_custom_column', array($this, 'renderDeeplinksColumn'), 10, 2);
+    }
+
+    public function addDeeplinksColumn($columns)
+    {
+        return array_merge($columns, [
+            'deeplinks' => __('Deeplinks', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
+            'qr' => __('Visit QR', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
+        ]);
+    }
+
+    public function renderDeeplinksColumn($column, $postId)
+    {
+        switch ($column) {
+            case 'deeplinks':
+                $this->renderDeeplinks($postId);
+                break;
+            case 'qr':
+                $this->renderQR($postId, 100);
+                break;
+        }
+    }
+
+
+    public function renderQR($postId, $size = 300)
+    {
+        printf(
+            '<a href="%2$s" class="%3$s"alt="%1$s"><img style="%4$s" src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=%2$s"</a>',
+            $this->createDeepLinks($postId)['visit']['label'],
+            $this->createDeepLinks($postId)['visit']['url'],
+            '',
+            'width: 100%; max-width: ' . $size . 'px; text-align: center; display: block;'
+        );
     }
 
     public function addMetaBoxForDialogueLinks($postType)
@@ -21,9 +55,16 @@ class App
 
         if (in_array($postType, $postTypes)) {
             add_meta_box(
-                'ar-dialogue-links',
-                __('Dialogue Links', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
-                array($this, 'renderMetaBoxContent'),
+                'ar-dialogue-qr',
+                __('Visit QR', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
+                array($this, 'renderQrMetaBox'),
+                $postType,
+                'side'
+            );
+            add_meta_box(
+                'ar-dialogue-deeplinks',
+                __('Deeplinks', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
+                array($this, 'renderDeeplinksMetaBox'),
                 $postType,
                 'side'
             );
@@ -35,39 +76,64 @@ class App
         return sprintf('pladdra://%1$s/%2$s', $verb, base64_encode(json_encode($payload, JSON_UNESCAPED_SLASHES)));
     }
 
-    public function renderMetaBoxContent()
+    public function renderQrMetaBox()
     {
-        $restUrl = get_field('custom_rest_url', 'option')
-            ? get_field('custom_rest_url', 'option')
-            : get_rest_url(null, 'wp/v2/ar-dialogue-room');
+        $this->renderQR($_GET['post']);
+    }
 
-        printf(
-            '<a href="%2$s">%1$s</a>',
-            __('Visitor deeplink', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
-            $this->buildDeeplink(
-                'ar-dialogue-room',
-                [
-                    'endpoint' => $restUrl . '/' . $_GET['post'] . '?acf_format=standard',
-                ]
-            )
-        );
+    public function renderDeeplinksMetaBox()
+    {
+        $this->renderDeeplinks($_GET['post']);
+    }
 
-        if (!empty(get_field('auth_string', 'option'))) {
-            echo '</br>';
+
+    public function renderDeeplinks($postId)
+    {
+        echo '<ul>';
+        foreach ($this->createDeepLinks($postId) as $deeplink) {
             printf(
-                '<a href="%2$s">%1$s</a>',
-                __('Admin deeplink', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
-                $this->buildDeeplink(
+                '<li><a href="%2$s" class="%3$s" style="%4$s">%1$s</a></li>',
+                $deeplink['label'],
+                $deeplink['url'],
+                'button button-large',
+                'text-align: center;'
+            );
+        }
+        echo '</ul>';
+    }
+
+
+    public function createDeepLinks($postId)
+    {
+        return array_filter([
+            'visit' => [
+                'label' => __('Visit Room in App', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
+                'url' => $this->buildDeeplink(
+                    'ar-dialogue-room',
+                    [
+                        'endpoint' => get_field('custom_rest_url', 'option')
+                        ? get_field('custom_rest_url', 'option')
+                        : get_rest_url(null, 'wp/v2/ar-dialogue-room') . '/' . $postId . '?acf_format=standard',
+                    ]
+                ),
+            ],
+            'admin' => [
+                'label' => __('Edit Room in App', API_AR_DIALOGUE_ROOM_TEXT_DOMAIN),
+                'url' => !empty(get_field('auth_string', 'option')) ? $this->buildDeeplink(
                     'ar-dialogue-room-admin',
                     [
-                        'endpoint' => $restUrl . '/' .  $_GET['post'] . '?acf_format=standard',
+                        'endpoint' => get_field('custom_rest_url', 'option')
+                        ? get_field('custom_rest_url', 'option')
+                        : get_rest_url(null, 'wp/v2/ar-dialogue-room') . '/' . $postId . '?acf_format=standard',
                         'headers' => [
                             'Authorization' => base64_encode(get_field('auth_string', 'option'))
                         ]
                     ]
-                )
-            );
-        }
+                ) : null,
+            ]
+        ], function ($d) {
+            return $d['url'] !== null;
+        });
     }
 
     public function registerOptionsPageForDashboard()
