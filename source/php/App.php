@@ -28,7 +28,7 @@ class App
                 $this->renderDeeplinks($postId);
                 break;
             case 'qr':
-                $this->renderQR($postId, 100);
+                $this->renderQR($postId, 120);
                 break;
         }
     }
@@ -37,7 +37,7 @@ class App
     {
         printf(
             '<a href="%2$s" class="%3$s"alt="%1$s">
-                <img style="%4$s" src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=%2$s">
+                <img style="%4$s" src="https://chart.googleapis.com/chart?chs=' . $size . 'x' . $size . '&cht=qr&chl=%2$s">
             </a>',
             $this->createDeepLinks($postId)['visit']['label'],
             $this->createDeepLinks($postId)['visit']['url'],
@@ -91,7 +91,7 @@ class App
 
     public function renderQrMetaBox()
     {
-        $this->renderQR($_GET['post']);
+        $this->renderQR($_GET['post'], 500);
     }
 
     public function renderDeeplinksMetaBox()
