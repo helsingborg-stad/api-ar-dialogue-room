@@ -37,7 +37,7 @@ class App
     public function renderQR($postId, $size = 300)
     {
         printf(
-            '<a href="%2$s" class="%3$s"alt="%1$s"><img style="%4$s" src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=%2$s"</a>',
+            '<a href="%2$s" class="%3$s"alt="%1$s"><img style="%4$s" src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=%2$s"></a>',
             $this->createDeepLinks($postId)['visit']['label'],
             $this->createDeepLinks($postId)['visit']['url'],
             '',
