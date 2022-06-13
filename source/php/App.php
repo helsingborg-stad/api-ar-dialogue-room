@@ -114,7 +114,7 @@ class App
                     [
                         'endpoint' => (get_field('custom_rest_url', 'option')
                         ? get_field('custom_rest_url', 'option')
-                        : get_rest_url(null, 'wp/v2/ar-dialogue-room') . '/' . $postId . '?acf_format=standard'),
+                        : get_rest_url(null, 'wp/v2/ar-dialogue-room')) . '/' . $postId . '?acf_format=standard',
                     ]
                 ),
             ],
@@ -124,8 +124,8 @@ class App
                     'ar-dialogue-room-admin',
                     [
                         'endpoint' => (get_field('custom_rest_url', 'option')
-                        ? get_field('custom_rest_url', 'option') . '/' . $postId . '?acf_format=standard'
-                        : get_rest_url(null, 'wp/v2/ar-dialogue-room') . '/' . $postId . '?acf_format=standard'),
+                        ? get_field('custom_rest_url', 'option')
+                        : get_rest_url(null, 'wp/v2/ar-dialogue-room')) . '/' . $postId . '?acf_format=standard',
                         'headers' => [
                             'Authorization' => base64_encode(get_field('auth_string', 'option'))
                         ]
