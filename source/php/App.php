@@ -111,9 +111,9 @@ class App
                 'url' => $this->buildDeeplink(
                     'ar-dialogue-room',
                     [
-                        'endpoint' => get_field('custom_rest_url', 'option')
+                        'endpoint' => (get_field('custom_rest_url', 'option')
                         ? get_field('custom_rest_url', 'option')
-                        : get_rest_url(null, 'wp/v2/ar-dialogue-room') . '/' . $postId . '?acf_format=standard',
+                        : get_rest_url(null, 'wp/v2/ar-dialogue-room') . '/' . $postId . '?acf_format=standard'),
                     ]
                 ),
             ],
@@ -122,9 +122,9 @@ class App
                 'url' => !empty(get_field('auth_string', 'option')) ? $this->buildDeeplink(
                     'ar-dialogue-room-admin',
                     [
-                        'endpoint' => get_field('custom_rest_url', 'option')
-                        ? get_field('custom_rest_url', 'option')
-                        : get_rest_url(null, 'wp/v2/ar-dialogue-room') . '/' . $postId . '?acf_format=standard',
+                        'endpoint' => (get_field('custom_rest_url', 'option')
+                        ? get_field('custom_rest_url', 'option') . '/' . $postId . '?acf_format=standard'
+                        : get_rest_url(null, 'wp/v2/ar-dialogue-room') . '/' . $postId . '?acf_format=standard'),
                         'headers' => [
                             'Authorization' => base64_encode(get_field('auth_string', 'option'))
                         ]
